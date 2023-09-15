@@ -13,4 +13,23 @@ namespace Repository {
 
         function findAll(): array;
     }
+
+    class TodolistRepositoryImpl implements TodolistRepository
+    {
+
+        private array $todolist = array();
+
+        public function save(Todolist $todolist): void
+        {
+        }
+
+        public function remove(int $number): bool
+        {
+        }
+
+        public function findAll(): array
+        {
+            return $this->todolist;
+        }
+    }
 }
