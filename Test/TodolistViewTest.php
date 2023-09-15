@@ -38,4 +38,19 @@ function testViewAddTodolist()
     $todolistView->showTodolist();
 }
 
-testViewAddTodolist();
+function testViewRemoveTodolist()
+{
+    $todolistRepository = new TodolistRepositoryImpl();
+    $todolistService = new TodolistServiceImpl($todolistRepository);
+    $todolistView = new TodolistView($todolistService);
+
+    $todolistService->addTodolist('Belajar PHP');
+    $todolistService->addTodolist('Belajar PHP OOP');
+    $todolistService->addTodolist('Membuat Aplikasi Todolist');
+
+    $todolistView->removeTodolist(1);
+
+    $todolistView->showTodolist();
+}
+
+testViewRemoveTodolist();
