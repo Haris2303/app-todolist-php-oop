@@ -4,6 +4,7 @@ require_once __DIR__ . '/../Entity/Todolist.php';
 require_once __DIR__ . '/../Repository/TodolistRepository.php';
 require_once __DIR__ . '/../Service/TodolistService.php';
 
+use Entity\Todolist;
 use Repository\TodolistRepositoryImpl;
 use Service\TodolistServiceImpl;
 
@@ -11,13 +12,26 @@ function testShowTodolist()
 {
     $todolistRepository = new TodolistRepositoryImpl();
 
-    $todolistRepository->todolist[] = "Belajar OOP";
-    $todolistRepository->todolist[] = "Membuat Aplikasi Todolist";
-    $todolistRepository->todolist[] = "Object Oriented Programming";
+    $todolistRepository->todolist[] = new Todolist("Belajar OOP");
+    $todolistRepository->todolist[] = new Todolist("Membuat Aplikasi Todolist");
+    $todolistRepository->todolist[] = new Todolist("Object Oriented Programming");
 
     $todolistService = new TodolistServiceImpl($todolistRepository);
 
     $todolistService->showTodolist();
 }
 
-testShowTodolist();
+function testAddTodolist()
+{
+    $todolistRepository = new TodolistRepositoryImpl();
+
+    $todolistService = new TodolistServiceImpl($todolistRepository);
+
+    $todolistService->addTodolist("Belajar OOP");
+    $todolistService->addTodolist("Object Oriented Programming");
+    $todolistService->addTodolist("Membuat Aplikasi Todolist OOP");
+
+    $todolistService->showTodolist();
+}
+
+testAddTodolist();
